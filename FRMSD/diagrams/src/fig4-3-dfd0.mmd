@@ -1,0 +1,23 @@
+flowchart LR
+    ADM["Administrator"]
+    LEC["Lecturer"]
+    REP["Student Batch<br/>Representative"]
+    TO["Technical Officer"]
+    MGT["Dean / HOD"]
+
+    P(("Faculty Resource<br/>Management<br/>System (FRMS)"))
+
+    ADM -->|"Timetable &amp; resource data"| P
+    P -->|"Approvals, reports &amp; alerts"| ADM
+
+    LEC -->|"Booking requests"| P
+    P -->|"Confirmations, notifications<br/>&amp; schedule updates"| LEC
+
+    REP -->|"Booking requests"| P
+    P -->|"Schedule updates<br/>&amp; navigation map"| REP
+
+    TO -->|"Equipment &amp; maintenance data"| P
+    P -->|"Blackout status &amp; task alerts"| TO
+
+    MGT -->|"Report requests"| P
+    P -->|"Utilization reports"| MGT

@@ -1,0 +1,30 @@
+flowchart TD
+    ADM["Administrator"] -->|"Timetable entry"| P1(("1.0<br/>Timetable<br/>Management"))
+    P1 -->|"Locked slots"| D1[("D1 Timetable<br/>Data Store")]
+
+    LEC["Lecturer /<br/>Student Representative"] -->|"Booking request"| P2(("2.0<br/>Booking<br/>Submission"))
+    P2 -->|"Request parameters"| P3(("3.0<br/>Conflict<br/>Validation<br/>Engine"))
+
+    D1 -->|"Timetable slots"| P3
+    D2[("D2 Booking<br/>Data Store")] -->|"Existing bookings"| P3
+    D3[("D3 Maintenance<br/>Data Store")] -->|"Blackout windows"| P3
+    D4[("D4 Resource<br/>Catalogue")] -->|"Capacity &amp; software profiles"| P3
+
+    P3 -->|"Valid request"| P4(("4.0<br/>Approval<br/>Routing"))
+    P3 -->|"Conflict detected"| P6(("6.0<br/>Notification<br/>Dispatcher"))
+    P4 -->|"Decision update"| D2
+    P4 -->|"Audit entry"| D5[("D5 Audit<br/>Log Store")]
+    P4 -->|"Status change"| P6
+
+    TO["Technical Officer"] -->|"Equipment issue / return"| P5(("5.0<br/>Equipment<br/>Lifecycle"))
+    TO -->|"Maintenance ticket"| P7(("7.0<br/>Maintenance<br/>Management"))
+    P5 -->|"Allocation record"| D4
+    P7 -->|"Blackout window"| D3
+
+    P6 -->|"Alerts"| ADM
+    P6 -->|"Alerts"| LEC
+    P6 -->|"Alerts"| TO
+
+    D2 -->|"Booking history"| P8(("8.0<br/>Reporting &amp;<br/>Analytics"))
+    D5 -->|"Audit trail"| P8
+    P8 -->|"Utilization reports"| MGT["Dean / HOD"]

@@ -1,0 +1,19 @@
+{
+  "name": "frms-diagrams",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mermaid source and high-resolution exports of the FRMS proposal diagrams (ER, Use Case, DFD Level 0, DFD Level 1).",
+  "scripts": {
+    "build:diagrams": "node build-diagrams.mjs"
+  },
+  "keywords": [
+    "mermaid",
+    "frms",
+    "capstone",
+    "susl"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "^12.0.0"
+  }
+}

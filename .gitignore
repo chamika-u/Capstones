@@ -1,0 +1,135 @@
+# =============================================================================
+#  .gitignore — D:\CIS\Capstones
+#  Repository root for the capstone work (Faculty Resource Management System).
+#
+#  TRACKED  : proposal documents, Mermaid diagram sources, generated figures,
+#             Spec Kit state and OpenCode project commands.
+#  IGNORED  : dependency folders, build output, caches, IDE/OS junk, secrets.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Node.js  (used by the FRMSD/diagrams Mermaid toolchain)
+# -----------------------------------------------------------------------------
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.tsbuildinfo
+.eslintcache
+
+# Framework / bundler output
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+.output/
+.turbo/
+.vercel/
+.netlify/
+.parcel-cache/
+
+# -----------------------------------------------------------------------------
+# Generic build output
+# -----------------------------------------------------------------------------
+dist/
+build/
+out/
+coverage/
+*.lcov
+
+# -----------------------------------------------------------------------------
+# Python  (Spec Kit helper scripts)
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+*.egg-info/
+htmlcov/
+.coverage
+
+# -----------------------------------------------------------------------------
+# Java / JVM (if any practical work is added here)
+# -----------------------------------------------------------------------------
+*.class
+.gradle/
+target/
+
+# -----------------------------------------------------------------------------
+# IDEs and editors
+# -----------------------------------------------------------------------------
+.idea/
+*.iml
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# -----------------------------------------------------------------------------
+# Operating-system files
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -----------------------------------------------------------------------------
+# Microsoft Office temporary / lock files  (e.g. "~$FRMS.docx")
+# -----------------------------------------------------------------------------
+~$*
+*.tmp
+*.temp
+*.bak
+*.old
+*.drawio.bkp
+*.drawio.dtmp
+
+# -----------------------------------------------------------------------------
+# Logs and dumps
+# -----------------------------------------------------------------------------
+*.log
+logs/
+
+# -----------------------------------------------------------------------------
+# Tooling state (path-specific, not shared)
+#   FRMSD/.specify/  — Spec Kit local state and templates
+#   FRMSD/.opencode/ — OpenCode project commands/config
+# -----------------------------------------------------------------------------
+FRMSD/.specify/
+FRMSD/.opencode/
+
+# -----------------------------------------------------------------------------
+# Environment variables and secrets  (never commit these)
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.keystore
+*.jks
+*.pfx
+*.p12

@@ -1,0 +1,103 @@
+erDiagram
+    USER ||--o{ BOOKING : "submits"
+    USER ||--o{ TIMETABLE_SLOT : "assigned to"
+    USER ||--o{ EQUIPMENT_ALLOCATION : "borrows"
+    USER ||--o{ AUDIT_LOG : "performs"
+    USER ||--o{ NOTIFICATION : "receives"
+    RESOURCE ||--o{ TIMETABLE_SLOT : "scheduled in"
+    RESOURCE ||--o{ BOOKING : "reserved via"
+    RESOURCE ||--o{ MAINTENANCE_BLACKOUT : "blocked by"
+    RESOURCE ||--o{ EQUIPMENT_ALLOCATION : "issued as"
+    RESOURCE ||--o{ RESOURCE_SOFTWARE : "equipped with"
+    SOFTWARE ||--o{ RESOURCE_SOFTWARE : "installed on"
+    BOOKING ||--o{ APPROVAL : "processed by"
+    BOOKING ||--o{ NOTIFICATION : "generates"
+
+    USER {
+        string user_id PK
+        string name
+        string email
+        string role
+        string department
+    }
+    RESOURCE {
+        string resource_id PK
+        string name
+        string category
+        int capacity
+        string location
+        string status
+    }
+    TIMETABLE_SLOT {
+        string slot_id PK
+        string resource_id FK
+        string lecturer_id FK
+        string course_code
+        string batch_name
+        string day_of_week
+        time start_time
+        time end_time
+        boolean is_locked
+    }
+    BOOKING {
+        string booking_id PK
+        string resource_id FK
+        string user_id FK
+        date booking_date
+        time start_time
+        time end_time
+        int batch_size
+        string purpose
+        string status
+    }
+    APPROVAL {
+        string approval_id PK
+        string booking_id FK
+        string approver_id FK
+        string decision
+        string remarks
+        datetime decided_at
+    }
+    MAINTENANCE_BLACKOUT {
+        string blackout_id PK
+        string resource_id FK
+        datetime start_datetime
+        datetime end_datetime
+        string reason
+    }
+    EQUIPMENT_ALLOCATION {
+        string allocation_id PK
+        string equipment_id FK
+        string issued_to FK
+        datetime issued_at
+        datetime returned_at
+        string condition_on_issue
+        string condition_on_return
+    }
+    SOFTWARE {
+        string software_id PK
+        string name
+        string version
+    }
+    RESOURCE_SOFTWARE {
+        string id PK
+        string resource_id FK
+        string software_id FK
+    }
+    AUDIT_LOG {
+        string log_id PK
+        string actor_id FK
+        string action
+        string target_type
+        string target_id
+        string reason
+        datetime timestamp
+    }
+    NOTIFICATION {
+        string notification_id PK
+        string user_id FK
+        string booking_id FK
+        string message
+        string type
+        datetime created_at
+    }

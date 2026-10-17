@@ -1,0 +1,53 @@
+flowchart LR
+    subgraph LA[" "]
+        direction TB
+        LEC["Lecturer"]
+        REP["Student Batch<br/>Representative"]
+        TO["Technical Officer"]
+    end
+
+    subgraph SYS["Faculty Resource Management System (FRMS)"]
+        direction TB
+        UC1(["Manage Users &amp; Roles"])
+        UC2(["Manage Resource Catalogue"])
+        UC3(["Manage &amp; Lock Timetable"])
+        UC4(["Search Resource Availability"])
+        UC5(["Submit Booking Request"])
+        UC6(["Validate Booking against Timetable"])
+        UC7(["Approve / Reject Booking"])
+        UC8(["Issue / Return Equipment"])
+        UC9(["Log Maintenance &amp; Create Blackout"])
+        UC10(["View Facility Navigation Map"])
+        UC11(["Receive Notifications"])
+        UC12(["View Reports &amp; Audit Log"])
+    end
+
+    subgraph RA[" "]
+        direction TB
+        ADM["Administrator"]
+        MGT["Dean / HOD"]
+    end
+
+    LEC --> UC4
+    LEC --> UC5
+    LEC --> UC10
+    LEC --> UC11
+    REP --> UC4
+    REP --> UC5
+    REP --> UC10
+    REP --> UC11
+    TO --> UC8
+    TO --> UC9
+    ADM --> UC1
+    ADM --> UC2
+    ADM --> UC3
+    ADM --> UC7
+    ADM --> UC11
+    ADM --> UC12
+    MGT --> UC12
+
+    UC5 -.->|"«include»"| UC6
+    UC7 -.->|"«extend»"| UC11
+
+    style LA fill:none,stroke:none
+    style RA fill:none,stroke:none
