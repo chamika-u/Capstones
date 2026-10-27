@@ -1,7 +1,7 @@
 flowchart LR
     ADM["Administrator"]
     LEC["Lecturer"]
-    REP["Student Batch<br/>Representative"]
+    STU["Student<br/>(All Batches,<br/>Public, No Login)"]
     TO["Technical Officer"]
     MGT["Dean / HOD"]
 
@@ -13,8 +13,8 @@ flowchart LR
     LEC -->|"Booking requests"| P
     P -->|"Confirmations, notifications<br/>&amp; schedule updates"| LEC
 
-    REP -->|"Booking requests"| P
-    P -->|"Schedule updates<br/>&amp; navigation map"| REP
+    STU -->|"Schedule queries (no login)"| P
+    P -->|"Lecture schedules, venue<br/>details &amp; navigation map"| STU
 
     TO -->|"Equipment &amp; maintenance data"| P
     P -->|"Blackout status &amp; task alerts"| TO

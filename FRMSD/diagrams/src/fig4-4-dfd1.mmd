@@ -2,7 +2,7 @@ flowchart TD
     ADM["Administrator"] -->|"Timetable entry"| P1(("1.0<br/>Timetable<br/>Management"))
     P1 -->|"Locked slots"| D1[("D1 Timetable<br/>Data Store")]
 
-    LEC["Lecturer /<br/>Student Representative"] -->|"Booking request"| P2(("2.0<br/>Booking<br/>Submission"))
+    LEC["Lecturer"] -->|"Booking request"| P2(("2.0<br/>Booking<br/>Submission"))
     P2 -->|"Request parameters"| P3(("3.0<br/>Conflict<br/>Validation<br/>Engine"))
 
     D1 -->|"Timetable slots"| P3
@@ -28,3 +28,8 @@ flowchart TD
     D2 -->|"Booking history"| P8(("8.0<br/>Reporting &amp;<br/>Analytics"))
     D5 -->|"Audit trail"| P8
     P8 -->|"Utilization reports"| MGT["Dean / HOD"]
+
+    STU["Student<br/>(All Batches,<br/>Public, No Login)"] -->|"Schedule query (no login)"| P9(("9.0<br/>Public Schedule<br/>Viewer"))
+    D1 -->|"Published timetable slots"| P9
+    D4 -->|"Venue &amp; facility details"| P9
+    P9 -->|"Lecture schedules<br/>&amp; details"| STU

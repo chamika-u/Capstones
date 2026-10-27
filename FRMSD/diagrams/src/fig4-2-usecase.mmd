@@ -2,7 +2,7 @@ flowchart LR
     subgraph LA[" "]
         direction TB
         LEC["Lecturer"]
-        REP["Student Batch<br/>Representative"]
+        STU["Student<br/>(All Batches,<br/>No Login)"]
         TO["Technical Officer"]
     end
 
@@ -20,6 +20,7 @@ flowchart LR
         UC10(["View Facility Navigation Map"])
         UC11(["Receive Notifications"])
         UC12(["View Reports &amp; Audit Log"])
+        UC13(["View Lecture Schedule<br/>&amp; Details (Public)"])
     end
 
     subgraph RA[" "]
@@ -32,10 +33,9 @@ flowchart LR
     LEC --> UC5
     LEC --> UC10
     LEC --> UC11
-    REP --> UC4
-    REP --> UC5
-    REP --> UC10
-    REP --> UC11
+    STU --> UC13
+    STU --> UC4
+    STU --> UC10
     TO --> UC8
     TO --> UC9
     ADM --> UC1
