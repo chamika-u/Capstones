@@ -1,0 +1,24 @@
+sequenceDiagram
+    autonumber
+    actor Student
+    participant Viewer as Public Schedule Viewer
+    participant API as FRMS API
+    participant Store as Timetable Store
+    actor Admin as Administrator
+
+    Student->>Viewer: Open public schedule viewer (no login)
+    Viewer->>API: Request current week and next four weeks
+    API->>Store: Fetch timetable slots and venues
+    Store-->>API: Locked slots with venue details
+    API->>Store: Fetch approved lectures and statuses
+    Store-->>API: Lectures, venues and statuses
+    API-->>Viewer: Weekly schedule data
+    Viewer-->>Student: Display schedule and venue details
+    Note over Viewer: Mark cancelled lectures and "to be confirmed" entries
+
+    opt Staff changes a schedule entry
+        Admin->>API: Update lecture, venue or status
+        API->>Store: Save approved change
+        API->>Viewer: Publish updated schedule
+        Viewer-->>Student: Show refreshed public schedule
+    end

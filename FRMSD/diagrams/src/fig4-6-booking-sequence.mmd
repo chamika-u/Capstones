@@ -1,0 +1,24 @@
+sequenceDiagram
+    autonumber
+    actor Lecturer
+    participant API as FRMS Booking API
+    participant Validator as Conflict Validator
+    actor Approver as Dean / HOD
+    participant Notify as Notification Service
+    participant Audit as Audit Log
+
+    Lecturer->>API: Submit booking request
+    API->>Validator: Validate request
+    Validator->>Validator: Check timetable, bookings, blackouts and capacity
+
+    alt Conflict detected
+        Validator-->>API: Conflict details
+        API-->>Lecturer: Reject request with reason
+    else Request valid
+        Validator-->>API: Request validated
+        API->>Approver: Route request for approval
+        Approver->>API: Submit approval decision
+        API->>Audit: Record decision and approver
+        API->>Notify: Send decision notification
+        Notify-->>Lecturer: Deliver outcome
+    end

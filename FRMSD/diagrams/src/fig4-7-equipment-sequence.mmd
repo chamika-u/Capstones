@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    actor Borrower as Lecturer
+    actor TO as Technical Officer
+    participant API as FRMS Equipment API
+    participant Store as Resource Catalogue
+    participant Audit as Audit Log
+
+    Borrower->>TO: Request equipment
+    TO->>API: Issue equipment
+    TO->>API: Record condition on issue
+    API->>Store: Save allocation and update availability
+    Store-->>API: Availability confirmed
+
+    Borrower->>TO: Return equipment
+    TO->>API: Record return and condition
+    API->>Store: Close allocation and restore availability
+    Store-->>API: Availability updated
+
+    opt Equipment requires maintenance
+        TO->>API: Log maintenance ticket
+        API->>Store: Create maintenance blackout
+        API->>Audit: Record blackout and reason
+    end
+
+    API-->>TO: Checkout lifecycle complete

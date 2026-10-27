@@ -1,0 +1,22 @@
+sequenceDiagram
+    autonumber
+    actor Admin as Administrator
+    participant API as FRMS Timetable API
+    participant Validator as Overlap Validator
+    participant Store as Timetable Store
+    participant Viewer as Public Schedule Viewer
+    actor Student
+
+    Admin->>API: Enter or import semester timetable
+    API->>Validator: Check resource and lecturer overlaps
+
+    alt Overlap detected
+        Validator-->>API: List conflicting slots
+        API-->>Admin: Return validation errors
+    else No overlap
+        Validator-->>API: Slots valid
+        API->>Store: Lock validated slots
+        Store-->>API: Lock confirmed
+        API->>Viewer: Publish locked schedule
+        Viewer-->>Student: Display published timetable
+    end
