@@ -281,7 +281,7 @@ The FRMS will be developed using a modern, well-documented full-stack architectu
 - **Backend:** Node.js with Express.js for RESTful API services, middleware-based validation, and the core conflict-detection algorithms.
 - **Database:** MySQL as the relational data store, accessed through the Prisma ORM, providing strict referential integrity for cross-checking timetables, resources, and bookings.
 - **Authentication and Authorization:** Firebase Authentication for secure login, session-token management, and Role-Based Access Control (RBAC) through custom claims.
-- **Deployment:** A zero-cost, production-grade cloud stack comprising Vercel (frontend), Render (backend API), and PlanetScale (managed MySQL database).
+- **Deployment:** A low-cost, production-grade cloud stack comprising Vercel (frontend), Render (backend API), and Railway or PlanetScale (managed MySQL database).
 
 The core conflict-detection logic consists of well-defined relational queries and server-side validation rules, none of which require novel or experimental algorithms. The development team possesses the requisite skills in full-stack JavaScript/TypeScript development, relational database design, and cloud deployment, and all required tools and infrastructure are freely available. By deliberately constraining scope to the Faculty of Computing and avoiding unnecessary complexity such as real-time streaming infrastructure, the technical scope remains fully achievable within the 15-week implementation window. The project is therefore **technically feasible**.
 
@@ -293,9 +293,9 @@ The system is designed to follow the Faculty's existing operational logic, so it
 
 #### 4.1.3 Economic Feasibility
 
-The FRMS is economically viable as it operates on a zero-cost model throughout development and initial deployment. The solution is constructed entirely from open-source frameworks and is hosted on the free tiers of established cloud providers (Vercel, Render, and PlanetScale), with authentication provided under the Firebase Spark plan. Consequently, the project incurs no licensing expenditure and requires no new hardware investment from the Faculty.
+The FRMS is economically viable as it operates on a low-cost model throughout development and initial deployment. The solution is constructed primarily from open-source frameworks and is hosted on established cloud providers (Vercel, Render, and Railway or PlanetScale), with authentication provided by Firebase. The lean pilot budget, including a custom domain, backend hosting, and managed MySQL, is approximately **LKR 3,975 (USD 13.25) per month**, or about **LKR 47,700 (USD 159) per year**, since all collaboration and developer tools are available on free tiers. The project therefore requires no new hardware investment from the Faculty and no significant licensing expenditure.
 
-Beyond its development phase, the system reduces the recurring cost of manual coordination and paper-based processing, and it enables more efficient utilisation of existing physical resources — thereby avoiding avoidable capital expenditure on additional facilities. As detailed in Section 9, the total estimated recurring cost during the pilot phase is negligible, and even permanent institutional hosting is projected to remain inexpensive. The project is therefore **economically feasible**.
+Beyond its development phase, the system reduces the recurring cost of manual coordination and paper-based processing, and it enables more efficient utilisation of existing physical resources — thereby avoiding avoidable capital expenditure on additional facilities. As detailed in Section 9, the total estimated recurring cost during the pilot phase remains modest, and even permanent institutional hosting is projected to remain inexpensive. The project is therefore **economically feasible**.
 
 #### 4.1.4 Schedule Feasibility
 
@@ -435,7 +435,7 @@ The FRMS integrates modern web and cloud technologies to ensure flexibility, sca
 
 - **Vercel** — Optimised cloud hosting for the Next.js frontend.
 - **Render** — Cloud platform for hosting the Node.js/Express backend API.
-- **PlanetScale (or Managed MySQL Free Tier)** — Managed cloud database hosting for the MySQL instance.
+- **Railway or PlanetScale** — Managed cloud database hosting for the MySQL instance.
 
 **Monitoring and Security**
 
@@ -831,22 +831,29 @@ The following table represents the Gantt chart reference outlining the timeline 
 
 ## 9. Cost Analysis
 
-The development and deployment plan of the FRMS deliberately utilises zero-cost and open-source technologies, ensuring that the project incurs no capital software expenditure while demonstrating a modern, production-grade cloud architecture.
+The FRMS is built on an open-source stack and is designed to operate at minimal cost during the pilot. A small paid allocation is retained only for the domain, backend hosting, and managed database to ensure reliable, externally accessible deployment; all remaining services use their free tiers. Prices use annual billing where available and are converted at **USD 1.00 ≈ LKR 300.00**.
 
-| Component | Platform | Purpose | Tier | Estimated Monthly Cost (USD) | Estimated Monthly Cost (LKR) |
-|-----------|----------|---------|------|------------------------------|------------------------------|
-| Frontend Application | Vercel | Next.js deployment | Hobby (Free) | $0.00 | 0.00 LKR |
-| Backend API Engine | Render | Node.js / Express hosting | Web Service (Free) | $0.00 | 0.00 LKR |
-| Database Instance | PlanetScale / Managed MySQL | Managed relational database | Free / Hobby | $0.00 | 0.00 LKR |
-| Authentication | Firebase Authentication | Secure login and RBAC | Spark Plan (Free) | $0.00 | 0.00 LKR |
-| Version Control | GitHub | Source code collaboration | Free Team Workspace | $0.00 | 0.00 LKR |
-| Email Notifications | Provider free tier (e.g., Resend / SendGrid) | Booking and schedule alerts | Free Tier | $0.00 | 0.00 LKR |
-| Development Labor | Team of five students | Design, implementation, testing | Academic Project | $0.00 | 0.00 LKR |
-| **Total Estimated Cost** | | | | **$0.00** | **0.00 LKR** |
+| Component | Platform | Purpose | Plan / Tier | Estimated Monthly Cost (USD) | Estimated Monthly Cost (LKR) |
+|-----------|----------|---------|-------------|------------------------------|------------------------------|
+| Custom Domain | Namecheap / GoDaddy | Public URL and SSL | `.com` registration (~$15/year) | $1.25 | 375 LKR |
+| Frontend Application | Vercel | Next.js deployment | Hobby (Free) | $0.00 | 0 LKR |
+| Backend API Engine | Render | Node.js / Express hosting | Starter (512 MB) | $7.00 | 2,100 LKR |
+| Database Instance | Railway / PlanetScale | Managed MySQL | Railway Hobby | $5.00 | 1,500 LKR |
+| Authentication | Firebase Authentication | Secure login and RBAC | Spark (Free) | $0.00 | 0 LKR |
+| Version Control | GitHub | Source code collaboration and CI | Free | $0.00 | 0 LKR |
+| Email Notifications | Resend / SendGrid | Booking and schedule alerts | Free tier | $0.00 | 0 LKR |
+| Team Communication | Slack | Channels, stand-ups, alerts | Free | $0.00 | 0 LKR |
+| Project Management | Trello | Boards and sprint tracking | Free | $0.00 | 0 LKR |
+| Development Labor | Team of five students | Design, implementation, testing | Academic Project | $0.00 | 0 LKR |
+| **Total Estimated Cost** | | | | **$13.25** | **3,975 LKR** |
 
-The system therefore utilises production-grade free tiers that are entirely appropriate for an academic Capstone Project.
+**Notes:**
 
-> **Note:** For long-term institutional adoption beyond the pilot phase, migrating to a dedicated Virtual Private Server (for example, AWS EC2 t3.micro or a DigitalOcean droplet) and a managed database is estimated at approximately $6.00 to $15.00 per month (approximately 1,800 to 4,500 LKR per month). This remains a highly economical proposition relative to the recurring administrative and academic cost of the current manual process.
+- The selected plans are sufficient for a five-member academic project. Annualised, the pilot cost is approximately **$159 (LKR 47,700) per year**.
+- Optional paid upgrades are available but are not required for the pilot: Vercel Pro ($20/month), GitHub Team ($20/month for five users), Resend Pro ($20/month), Slack Pro ($43.75/month for five users), Trello Standard ($25/month for five users), and PlanetScale Scaler ($39/month). If all upgrades were adopted, the cost would rise to approximately $143/month (LKR 42,900), or about $1,716/year (LKR 514,800), which is unnecessary for the academic scope.
+- Development labour is contributed by the five team members as part of the academic requirement and therefore carries no cash cost. At a notional student rate of LKR 1,500 per hour for approximately 750 hours, this in-kind contribution is valued at about **LKR 1,125,000**.
+
+> **Note:** For long-term institutional adoption beyond the pilot phase, migrating to a dedicated Virtual Private Server (for example, AWS EC2 t3.micro or a DigitalOcean droplet) and a managed database is estimated at approximately $10.00 to $20.00 per month (approximately 3,000 to 6,000 LKR per month). This remains a highly economical proposition relative to the recurring administrative and academic cost of the current manual process.
 
 ---
 
